@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using UnityEditor.SearchService;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
     private string var1 = "Hello";
@@ -25,13 +26,24 @@ public class NewBehaviourScript : MonoBehaviour
 
 
         float xinput = Input.GetAxis("Horizontal");
-        Debug.Log(xinput);
+       // Debug.Log(xinput);
         rb.velocity = new Vector2(xinput * fast, rb.velocity.y);
 
     }
-       private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.tag);
+        
+            switch(collision.tag)
+            {
+            case "Death":
+                {
+                    string thisLevel = SceneManager.GetActiveScene().name;
+                    SceneManager.LoadScene(thisLevel);
+                    break;
+                }
+
+
+            }
     }
 
 
