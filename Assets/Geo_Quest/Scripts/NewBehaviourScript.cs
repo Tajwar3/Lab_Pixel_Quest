@@ -10,6 +10,7 @@ public class NewBehaviourScript : MonoBehaviour
     private string var1 = "Hello";
     int var3 = 3;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     public int fast = 7;
     public string nextLevel = "nextLevel";
     public float moveSpeed = 5f;
@@ -25,6 +26,7 @@ public class NewBehaviourScript : MonoBehaviour
         string var2 = "world";
         Debug.Log("Hello world");
         Debug.Log(var1 + var2);
+        sprite = GetComponent<SpriteRenderer>();
         
     }
 
@@ -40,6 +42,18 @@ public class NewBehaviourScript : MonoBehaviour
         if (isgrounded && Input.GetButtonDown("Jump"))
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpforce);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            sprite.color = Color.green; 
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            sprite.color = Color.blue;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            sprite.color = Color.red;
         }
 
     }
