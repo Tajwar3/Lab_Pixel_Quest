@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class NewBehaviourScript : MonoBehaviour
 {
     private string var1 = "Hello";
-    int var3 = 3;
+    
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     public int fast = 7;
