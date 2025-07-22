@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player1jump1 : MonoBehaviour
@@ -20,13 +18,7 @@ public class Player1jump1 : MonoBehaviour
     {
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
-
-
-
         gravity = new Vector2(0f, Physics2D.gravity.y);
-
-
-
 
     }
 
@@ -37,7 +29,11 @@ public class Player1jump1 : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == "Water") { waterCheck = false; }
+        if (other.tag == "Water")
+        {
+            waterCheck = false;
+        }
+    }
 
 
 
@@ -45,23 +41,18 @@ public class Player1jump1 : MonoBehaviour
         // Update is called once per frame
         void Update()
         {
-            float yinput = Input.GetAxis("Vertical");
+            tung = Physics2D.OverlapCapsule(feetcollider.position, new Vector2(CapsuleHeight, CapsuleRadius), CapsuleDirection2D.Horizontal, 0, groundMask);
 
-            tung = Physics2D.OverlapCapsule(point: feetcollider.position, new Vector2(CapsuleHeight, CapsuleRadius), CapsuleDirection2D.Horizontal, 0, groundMask);
+            Debug.Log(tung + " " + waterCheck);
 
-            if (Input.GetKeyUp(KeyCode.Space) && tung)
-
-
+            if (Input.GetKeyUp(KeyCode.Space) && (tung || waterCheck))
             {
-
-
                 rb.velocity = new Vector2(rb.velocity.x, jumpforce);
 
             }
-            if (rb.velocity.y < 0)
+            if (rb.velocity.y < 0 && !waterCheck)
             {
                 rb.velocity += gravity * (fallforce * Time.deltaTime);
             }
         }
     }
-}
