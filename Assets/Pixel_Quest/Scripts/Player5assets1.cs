@@ -16,19 +16,20 @@ public class Player5assets1 : MonoBehaviour
     {
 
         switch (other.tag)
-        { 
+        {
             case "Death":
                 {
                     HealthCount--;
-                if (HealthCount <= 0)
-                {string thisLevel = SceneManager.GetActiveScene().name;
+                    if (HealthCount <= 0)
+                    {
+                        string thisLevel = SceneManager.GetActiveScene().name;
                         SceneManager.LoadScene(thisLevel);
-                 }
+                    }
                     else
                     { transform.position = respawnPoint.position; }
-                        break;
+                    break;
 
-                
+
 
                 }
             case "Finish":
@@ -50,21 +51,17 @@ public class Player5assets1 : MonoBehaviour
                         Destroy(other.gameObject);
                         break;
                     }
-                       
+
                     HealthCount++;
                     Destroy(other.gameObject);
                     break;
                 }
 
             case "Respawn":
-                respawnPoint.position = other.transform.Find("Point").position;
-                break;
-            case "Finish":
                 {
-                    string nextLevel = other.GetComponent<LevelGoal>();
+                    respawnPoint.position = other.transform.Find("Point").position;
                     break;
                 }
-
 
 
         }
